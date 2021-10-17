@@ -1,5 +1,3 @@
-import { getTimeOfDay } from "./greeting";
-
 const body = document.querySelector("body");
 const slideNext = document.querySelector(".slide-next");
 const slidePrev = document.querySelector(".slide-prev");
@@ -7,6 +5,13 @@ let randomNum = getRandomNum();
 
 function getRandomNum() {
   return Math.floor(Math.random() * (20 - 1 + 1) + 1);
+}
+
+function getTimeOfDay() {
+  const date = new Date();
+  const hours = date.getHours();
+  const timeOfDay = ["night", "morning", "day", "evening"];
+  return timeOfDay[Math.floor(hours / 6)];
 }
 
 function setBg() {

@@ -31,4 +31,4 @@ function getLocalStorage() {
 window.addEventListener("beforeunload", setLocalStorage);
 window.addEventListener("DOMContentLoaded", getLocalStorage);
 
-export { showGreeting, getTimeOfDay };
+export { showGreeting };
