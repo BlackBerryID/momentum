@@ -3,15 +3,14 @@ const name = document.querySelector(".name");
 
 // greeting
 
-function showGreeting() {
+function getTimeOfDay() {
   const date = new Date();
   const hours = date.getHours();
+  const timeOfDay = ["night", "morning", "afternoon", "evening"];
+  return timeOfDay[Math.floor(hours / 6)];
+}
 
-  function getTimeOfDay() {
-    const timeOfDay = ["night", "morning", "afternoon", "evening"];
-    return timeOfDay[Math.floor(hours / 6)];
-  }
-
+function showGreeting() {
   const timeOfDay = getTimeOfDay();
   const greetingText = `Good ${timeOfDay}`;
   greeting.textContent = greetingText;
@@ -32,4 +31,4 @@ function getLocalStorage() {
 window.addEventListener("beforeunload", setLocalStorage);
 window.addEventListener("DOMContentLoaded", getLocalStorage);
 
-export { showGreeting };
+export { showGreeting, getTimeOfDay };
