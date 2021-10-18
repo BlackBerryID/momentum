@@ -5,3 +5,4 @@ import "./js/greeting";
 import "./js/background";
 import "./js/weather";
 import "./js/quotation";
+import "./js/audio";
