@@ -14,6 +14,7 @@ function playAudio() {
     changeButtonIcon();
   } else {
     audio.src = playList[playNum].src;
+    songTitle.textContent = playList[playNum].title;
     audio.currentTime = 0;
     audio.play();
     isPlay = true;
@@ -36,6 +37,7 @@ function playNext() {
     playNum++;
   }
   audio.src = playList[playNum].src;
+  songTitle.textContent = playList[playNum].title;
   audio.currentTime = 0;
   isPlay = true;
   changeButtonIcon();
@@ -49,6 +51,7 @@ function playPrev() {
     playNum--;
   }
   audio.src = playList[playNum].src;
+  songTitle.textContent = playList[playNum].title;
   audio.currentTime = 0;
   isPlay = true;
   changeButtonIcon();
@@ -65,3 +68,45 @@ playList.forEach((item) => {
   li.textContent = item.title;
   playListContainer.append(li);
 });
+
+// custom player
+const songTitle = document.querySelector(".song-title");
+const currentTime = document.querySelector(".current-time");
+const durationTime = document.querySelector(".duration-time");
+const progressBar = document.querySelector(".progress-bar");
+const volumeBar = document.querySelector(".volume-bar");
+
+audio.src = playList[playNum].src;
+songTitle.textContent = playList[playNum].title;
+setTimeout(() => {
+  currentTime.innerHTML = formatTime(Math.floor(audio.currentTime));
+  durationTime.innerHTML = formatTime(Math.floor(audio.duration));
+}, 20);
+
+function updateProgressValue() {
+  progressBar.max = audio.duration;
+  progressBar.value = audio.currentTime;
+  currentTime.innerHTML = formatTime(Math.floor(audio.currentTime));
+  if (durationTime.innerHTML === "NaN:NaN") {
+    durationTime.innerHTML = "0:00";
+  } else {
+    durationTime.innerHTML = formatTime(Math.floor(audio.duration));
+  }
+}
+
+function formatTime(seconds) {
+  let min = Math.floor(seconds / 60);
+  let sec = Math.floor(seconds - min * 60);
+  if (sec < 10) {
+    sec = `0${sec}`;
+  }
+  return `${min}:${sec}`;
+}
+
+function changeProgressBar() {
+  audio.currentTime = progressBar.value;
+}
+
+audio.addEventListener("timeupdate", updateProgressValue);
+audio.addEventListener("ended", playNext);
+progressBar.addEventListener("change", changeProgressBar);
