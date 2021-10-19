@@ -61,15 +61,27 @@ body {
 }
 
 .play-item::before {
-  content: "\2713";
+  content: "";
+  /* content: "\2713"; */
   position: absolute;
   left: 0;
   top: 2px;
   font-weight: 900;
+  width: 20px;
+  height: 20px;
+  background-image: url(../assets/svg/play.svg);
+  background-position: center;
+  background-size: cover;
 }
 
-.item-active::before {
+/* .item-active::before {
   color: #c5b358;
+} */
+
+.player-icon,
+.play-item::before {
+  filter: invert(97%) sepia(0%) saturate(7486%) hue-rotate(178deg)
+    brightness(105%) contrast(105%);
 }
 
 .player-icon,
