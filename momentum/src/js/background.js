@@ -10,14 +10,14 @@ function getRandomNum() {
 function getTimeOfDay() {
   const date = new Date();
   const hours = date.getHours();
-  const timeOfDay = ["night", "morning", "day", "evening"];
+  const timeOfDay = ["night", "morning", "afternoon", "evening"];
   return timeOfDay[Math.floor(hours / 6)];
 }
 
 function setBg() {
   const timeOfDay = getTimeOfDay();
   const bgNum = String(randomNum).padStart(2, 0);
-  const bgLink = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
+  const bgLink = `https://raw.githubusercontent.com/BlackBerryID/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
   const img = new Image();
   img.src = bgLink;
   img.onload = () => {

@@ -81,7 +81,7 @@ songTitle.textContent = playList[playNum].title;
 setTimeout(() => {
   currentTime.innerHTML = formatTime(Math.floor(audio.currentTime));
   durationTime.innerHTML = formatTime(Math.floor(audio.duration));
-}, 20);
+}, 50);
 
 function updateProgressValue() {
   progressBar.max = audio.duration;
