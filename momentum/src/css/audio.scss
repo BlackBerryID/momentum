@@ -61,7 +61,7 @@
   border: 0;
   outline: 0;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3s, top none;
 }
 
 // .player-icon:hover,
@@ -111,20 +111,33 @@
   position: absolute;
   z-index: 1;
   height: 5px;
-  background: #e8e8ea;
   border-radius: 30px;
 }
 
 .volume-bar {
-  right: 5px;
+  left: 35px;
   top: 65px;
   width: 80px;
+  background: linear-gradient(
+    to right,
+    #d4af37 0%,
+    #d4af37 50%,
+    #e8e8ea 50%,
+    #e8e8ea 100%
+  );
 }
 
 .progress-bar {
   width: 160px;
   top: 45px;
-  left: 5px;
+  left: 0;
+  background: linear-gradient(
+    to right,
+    #d4af37 0%,
+    #d4af37 0%,
+    #e8e8ea 0%,
+    #e8e8ea 100%
+  );
 }
 
 .progress-bar::-webkit-slider-thumb,
@@ -162,4 +175,13 @@
   left: 50%;
   transform: translateX(-50%);
   width: 160px;
+}
+
+.volume {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  background-size: 24px 24px;
+  background-position: center;
+  background-image: url("../assets/svg/volume.svg");
 }
