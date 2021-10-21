@@ -92,6 +92,11 @@ body {
   padding: 20px;
 }
 
+.slider-icon:hover,
+.change-quote:hover {
+  opacity: 1;
+}
+
 .slider-icon {
   position: absolute;
   top: 50%;

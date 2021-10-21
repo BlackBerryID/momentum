@@ -39,14 +39,19 @@
   background-size: cover;
 }
 
-/* .item-active::before {
-  color: #c5b358;
-} */
+.item-active {
+  color: #d4af37;
+}
 
 .player-icon,
 .play-item::before {
   filter: invert(96%) sepia(3%) saturate(79%) hue-rotate(201deg) brightness(99%)
     contrast(90%);
+}
+
+.item-active::before {
+  filter: invert(71%) sepia(54%) saturate(545%) hue-rotate(4deg) brightness(91%)
+    contrast(88%);
 }
 
 .player-icon,
@@ -63,12 +68,6 @@
   cursor: pointer;
   transition: 0.3s, top none;
 }
-
-// .player-icon:hover,
-// .slider-icon:hover,
-// .change-quote:hover {
-//   opacity: 1;
-// }
 
 .player-icon:active,
 .slider-icon:active,

@@ -7,11 +7,21 @@ const playListContainer = document.querySelector(".play-list");
 let isPlay = false;
 let playNum = 0;
 
+playList.forEach((item) => {
+  const li = document.createElement("li");
+  li.classList.add("play-item");
+  li.textContent = item.title;
+  playListContainer.append(li);
+});
+
+const playItems = document.querySelectorAll(".play-item");
+
 function playAudio() {
   if (isPlay) {
     audio.pause();
     isPlay = false;
     changeButtonIcon();
+    highlightSong();
   } else {
     audio.src = playList[playNum].src;
     songTitle.textContent = playList[playNum].title;
@@ -19,6 +29,7 @@ function playAudio() {
     audio.play();
     isPlay = true;
     changeButtonIcon();
+    highlightSong();
   }
 }
 
@@ -43,6 +54,7 @@ function playNext() {
   changeButtonIcon();
   audio.play();
   progressBar.style.background = `linear-gradient(to right, #d4af37 0%, #d4af37 0%, #e8e8ea 0%, white 100%)`;
+  highlightSong();
 }
 
 function playPrev() {
@@ -58,18 +70,12 @@ function playPrev() {
   changeButtonIcon();
   audio.play();
   progressBar.style.background = `linear-gradient(to right, #d4af37 0%, #d4af37 0%, #e8e8ea 0%, white 100%)`;
+  highlightSong();
 }
 
 playBtn.addEventListener("click", playAudio);
 playNextBtn.addEventListener("click", playNext);
 playPrevBtn.addEventListener("click", playPrev);
-
-playList.forEach((item) => {
-  const li = document.createElement("li");
-  li.classList.add("play-item");
-  li.textContent = item.title;
-  playListContainer.append(li);
-});
 
 // custom player
 const songTitle = document.querySelector(".song-title");
@@ -151,6 +157,11 @@ function toggleVolume() {
     volumeBar.value = 0;
     volumeBar.style.background = `linear-gradient(to right, #d4af37 0%, #d4af37 0%, #e8e8ea 0%, white 100%)`;
   }
+}
+
+function highlightSong() {
+  playItems.forEach((item) => item.classList.remove("item-active"));
+  playItems[playNum].classList.add("item-active");
 }
 
 audio.addEventListener("timeupdate", updateProgressValue);
