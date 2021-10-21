@@ -95,11 +95,8 @@ setTimeout(() => {
 
 function updateProgressValue() {
   progressBar.max = audio.duration;
-  console.log("progressBar.max: ", progressBar.max);
   progressBar.value = audio.currentTime;
-  console.log("progressBar.value: ", progressBar.value);
   let changeValue = audio.currentTime / audio.duration;
-  console.log("changeValue: ", changeValue);
   progressBar.style.background = `linear-gradient(to right, #d4af37 0%, #d4af37 ${
     changeValue * 100
   }%, #e8e8ea ${changeValue * 100}%, white 100%)`;
@@ -164,10 +161,36 @@ function highlightSong() {
   playItems[playNum].classList.add("item-active");
 }
 
+function songFromPlayListTrigger(e) {
+  let songIndex = Array.from(playItems).indexOf(e.target);
+  if (songIndex === playNum) {
+    playAudio();
+  } else {
+    playNum = songIndex;
+    isPlay = false;
+    playAudio();
+  }
+}
+
+function showPauseIcon() {
+  playItems.forEach((item) => item.classList.remove("item-active-pause"));
+  playItems[playNum].classList.add("item-active-pause");
+}
+
+function showPlayIcon() {
+  playItems.forEach((item) => item.classList.remove("item-active-pause"));
+}
+
 audio.addEventListener("timeupdate", updateProgressValue);
 audio.addEventListener("ended", playNext);
+audio.addEventListener("play", showPauseIcon);
+audio.addEventListener("pause", showPlayIcon);
 progressBar.addEventListener("change", changeProgressBar);
 volumeBtn.addEventListener("click", toggleVolume);
+
+playItems.forEach((item) =>
+  item.addEventListener("click", songFromPlayListTrigger)
+);
 
 let isVolumeMousedown = false;
 volumeBar.addEventListener(

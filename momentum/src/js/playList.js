@@ -1,22 +1,22 @@
 const playList = [
   {
-    title: "Aqua Caelestis",
-    src: "../assets/sounds/Aqua Caelestis.mp3",
+    title: "Without You",
+    src: "../assets/sounds/Without You.mp3",
     // duration: '00:58'
   },
   {
-    title: "Ennio Morricone",
-    src: "../assets/sounds/Ennio Morricone.mp3",
+    title: "White Mustang",
+    src: "../assets/sounds/White Mustang.mp3",
     // duration: '03:50'
   },
   {
-    title: "River Flows In You",
-    src: "../assets/sounds/River Flows In You.mp3",
+    title: "Love Song",
+    src: "../assets/sounds/Love Song.mp3",
     // duration: '03:50'
   },
   {
-    title: "Summer Wind",
-    src: "../assets/sounds/Summer Wind.mp3",
+    title: "Ride",
+    src: "../assets/sounds/Ride.mp3",
     // duration: '03:50'
   },
 ];

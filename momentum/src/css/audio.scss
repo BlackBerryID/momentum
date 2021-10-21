@@ -54,6 +54,14 @@
     contrast(88%);
 }
 
+.item-active-play::before {
+  background-image: url(../assets/svg/play.svg);
+}
+
+.item-active-pause::before {
+  background-image: url(../assets/svg/pause.svg);
+}
+
 .player-icon,
 .slider-icon,
 .change-quote {
@@ -69,7 +77,6 @@
   transition: 0.3s, top none;
 }
 
-.player-icon:active,
 .slider-icon:active,
 .change-quote:active {
   border: 0;
