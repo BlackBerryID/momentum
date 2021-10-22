@@ -51,7 +51,7 @@ window.addEventListener("beforeunload", setLocalStorage);
 window.addEventListener("DOMContentLoaded", getLocalStorage);
 
 getLocalStorage();
-getWeather(city.value);
+// getWeather(city.value);
 
 city.addEventListener("change", setCity);
 city.addEventListener("keypress", checkKey);
