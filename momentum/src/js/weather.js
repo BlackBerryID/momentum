@@ -8,8 +8,15 @@ const city = document.querySelector(".city");
 async function getWeather(cityName) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=en&appid=b9d602305123a304901b03555651a15e&units=metric`;
   const res = await fetch(url);
+  if (res.status == 404) {
+    weatherDescription.textContent = `There is no weather forecast for '${cityName}'`;
+    temperature.textContent = "";
+    wind.textContent = "";
+    humidity.textContent = "";
+    weatherIcon.className = "weather-icon owf";
+    return;
+  }
   const data = await res.json();
-
   weatherIcon.className = "weather-icon owf";
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${data.main.temp.toFixed(0)}°C`;
