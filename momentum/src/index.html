@@ -8,7 +8,7 @@
   </head>
   <body>
     <header class="header">
-      <div class="player">
+      <div class="player" data-section="audio">
         <div class="current-time">0:00</div>
         <div class="duration-time">0:00</div>
         <div class="song-title"></div>
@@ -41,7 +41,7 @@
 
         <ul class="play-list"></ul>
       </div>
-      <div class="weather">
+      <div class="weather" data-section="weather">
         <input type="text" class="city" value="Minsk" />
         <i class="weather-icon owf"></i>
         <div class="weather-error"></div>
@@ -58,9 +58,9 @@
         <button class="slide-prev slider-icon"></button>
         <button class="slide-next slider-icon"></button>
       </div>
-      <time class="time"></time>
-      <date class="date"></date>
-      <div class="greeting-container">
+      <time class="time" data-section="time"></time>
+      <date class="date" data-section="date"></date>
+      <div class="greeting-container" data-section="greeting">
         <span class="greeting"></span>
         <input type="text" class="name" placeholder="[Enter name]" />
       </div>
@@ -187,8 +187,8 @@
           </ul>
         </div>
       </div>
-      <button class="change-quote"></button>
-      <div>
+      <div data-section="quote">
+        <button class="change-quote"></button>
         <div class="quote"></div>
         <div class="author"></div>
       </div>

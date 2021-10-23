@@ -1,6 +1,7 @@
 const settings = document.querySelector(".settings");
 const openSettingsButton = document.querySelector(".open-settings");
 const settingCheckboxes = document.querySelectorAll(".checkbox");
+const sections = document.querySelectorAll("[data-section]");
 let state = {
   language: "en",
   photoSource: "github",
@@ -20,6 +21,20 @@ settingCheckboxes.forEach((item) => {
     }
   }
 });
+
+showHide();
+
+function showHide() {
+  sections.forEach((item) => {
+    if (state.blocks.includes(item.dataset.section)) {
+      item.style.opacity = "1";
+      item.style.pointerEvents = "auto";
+    } else {
+      item.style.opacity = "0";
+      item.style.pointerEvents = "none";
+    }
+  });
+}
 
 function setLocalStorage() {
   localStorage.setItem("state", JSON.stringify(state));
@@ -42,6 +57,7 @@ function changeBlocksState() {
     let index = state.blocks.findIndex((item) => item === this.dataset.name);
     state.blocks.splice(index, 1);
   }
+  showHide();
 }
 
 window.addEventListener("beforeunload", setLocalStorage);
@@ -49,6 +65,3 @@ openSettingsButton.addEventListener("click", toggleSettings);
 settingCheckboxes.forEach((item) =>
   item.addEventListener("change", changeBlocksState)
 );
-
-// switch
-const switchWrapper = document.querySelector(".switch-wrapper");

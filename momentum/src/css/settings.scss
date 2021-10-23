@@ -143,3 +143,9 @@ input:checked + .slider:before {
 .slider:before {
   border-radius: 50%;
 }
+
+// global settings
+
+[data-section] {
+  transition: opacity 0.3s;
+}
