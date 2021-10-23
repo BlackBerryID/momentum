@@ -1,9 +1,10 @@
+import { currentLang } from "./translation";
 const quote = document.querySelector(".quote");
 const author = document.querySelector(".author");
 const changeQuoteButton = document.querySelector(".change-quote");
 
-let lang = "RU";
 let randomNum;
+let data;
 
 function getRandomNum() {
   return Math.floor(Math.random() * (9 - 0 + 1) + 0);
@@ -11,6 +12,7 @@ function getRandomNum() {
 
 async function getQuotes() {
   // prevent duplication of quotes
+  let tempNum;
   do {
     tempNum = getRandomNum();
   } while (tempNum == randomNum);
@@ -18,8 +20,8 @@ async function getQuotes() {
 
   const quotes = "../json/quotations.json";
   const res = await fetch(quotes);
-  const data = await res.json();
-  showQuote(data, randomNum, lang);
+  data = await res.json();
+  showQuote(data, randomNum, currentLang);
 }
 
 function showQuote(data, randomNum, lang) {
@@ -44,3 +46,5 @@ changeQuoteButton.addEventListener("click", getQuotes);
 
 // use localstorage to remember the index of quote before leaving the page
 window.addEventListener("beforeunload", setLocalStorage);
+
+export { data, randomNum, showQuote };

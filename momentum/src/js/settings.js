@@ -3,7 +3,7 @@ const openSettingsButton = document.querySelector(".open-settings");
 const settingCheckboxes = document.querySelectorAll(".checkbox");
 const sections = document.querySelectorAll("[data-section]");
 let state = {
-  language: "en",
+  language: "EN",
   photoSource: "github",
   blocks: ["time", "date", "greeting", "quote", "weather", "audio", "todolist"],
 };
@@ -65,3 +65,5 @@ openSettingsButton.addEventListener("click", toggleSettings);
 settingCheckboxes.forEach((item) =>
   item.addEventListener("change", changeBlocksState)
 );
+
+export { state };

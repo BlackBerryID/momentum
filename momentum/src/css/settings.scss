@@ -152,6 +152,12 @@ input:checked + .slider:before {
 
 // languages
 
+.languages-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
 .languages,
 .title-language {
   display: inline-block;
@@ -159,15 +165,12 @@ input:checked + .slider:before {
 
 .title-language {
   position: relative;
-  left: -140px;
-  margin: 20px 0;
 }
 
 .languages {
   display: inline-flex;
   position: relative;
   justify-content: space-between;
-  right: -140px;
   width: 80px;
 }
 
