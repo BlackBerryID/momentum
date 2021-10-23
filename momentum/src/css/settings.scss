@@ -1,0 +1,145 @@
+.settings {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  color: #333;
+
+  &-container {
+    // visibility: hidden;
+    position: relative;
+    top: -1080%;
+    right: -40%;
+    width: 500px;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    padding: 20px;
+    transform: translateY(2%);
+    // opacity: 0;
+    transition: all 0.3s;
+    z-index: 2;
+  }
+
+  &.active &-container {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  &-main-title {
+    text-align: left;
+  }
+
+  &-title {
+    text-align: left;
+    text-transform: uppercase;
+    margin: 10px 0;
+  }
+
+  &-list {
+    list-style: none;
+
+    .settings-item {
+      border-top: 1px solid #ccc;
+    }
+
+    & li:last-child > .settings-item {
+      border-bottom: 1px solid #ccc;
+    }
+  }
+
+  &-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
+
+  &-name {
+    font-size: 18px;
+    display: inline-flex;
+    color: #666;
+    align-items: center;
+  }
+}
+
+.open-settings {
+  position: relative;
+  left: 10px;
+  background-image: url(../assets/svg/settings.svg);
+  filter: invert(97%) sepia(5%) saturate(315%) hue-rotate(238deg)
+    brightness(115%) contrast(100%);
+  opacity: 0.5;
+  width: 25px;
+  height: 25px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+/* Switch */
+
+.switch-wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+  align-self: center;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
+  background-color: var(--color-link-hover);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  background-color: #fff;
+}
+
+input:checked + .slider {
+  background-color: rgba(212, 175, 55, 0.7);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+.slider {
+  border-radius: 30px;
+}
+
+.slider:before {
+  border-radius: 50%;
+}

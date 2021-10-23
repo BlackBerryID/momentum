@@ -43,7 +43,7 @@ function getSlidePrev() {
   setBg();
 }
 
-// setBg();
+setBg();
 
 slideNext.addEventListener("click", getSlideNext);
 slidePrev.addEventListener("click", getSlidePrev);

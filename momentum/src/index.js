@@ -7,3 +7,4 @@ import "./js/weather";
 import "./js/quotation";
 import "./js/audio";
 import "./js/backgroundAPI";
+import "./js/settings";
