@@ -9,3 +9,4 @@ import "./js/audio";
 import "./js/backgroundAPI";
 import "./js/settings";
 import "./js/translation";
+import "./js/todo";
