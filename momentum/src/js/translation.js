@@ -17,6 +17,9 @@ const settingsNameWeather = document.querySelector(".settings-name-weather");
 const settingsNameAudio = document.querySelector(".settings-name-audio");
 const settingsNameTodo = document.querySelector(".settings-name-todo");
 const settingsTitleLanguage = document.querySelector(".title-language");
+const settingsTitleSource = document.querySelector(".title-source");
+const settingsTitleTag = document.querySelector(".title-tag");
+const settingsTitleInput = document.querySelector(".tag-input");
 
 let langFromLocalStorage = JSON.parse(localStorage.getItem("state")).language;
 let currentLang = langFromLocalStorage;
@@ -35,6 +38,9 @@ let settingsObj = {
     language: "Language",
     ru: "Rus",
     en: "Eng",
+    source: "Image source",
+    tag: "Image tag",
+    input: "Enter tag",
   },
   RU: {
     settings: "Настройки",
@@ -49,8 +55,13 @@ let settingsObj = {
     language: "Язык",
     ru: "Рус",
     en: "Анг",
+    source: "Источник картинок",
+    tag: "Тег картинок",
+    input: "Введите тег",
   },
 };
+
+settingsTitleInput.placeholder = settingsObj[currentLang].input;
 
 function changeLangAfterReload() {
   if (currentLang === "RU") {
@@ -89,6 +100,9 @@ function translateSettings() {
   settingsTitleLanguage.textContent = settingsObj[currentLang].language;
   langRuButton.textContent = settingsObj[currentLang].ru;
   langEnButton.textContent = settingsObj[currentLang].en;
+  settingsTitleSource.textContent = settingsObj[currentLang].source;
+  settingsTitleTag.textContent = settingsObj[currentLang].tag;
+  settingsTitleInput.placeholder = settingsObj[currentLang].input;
 }
 
 langButtons.forEach((item) => {
