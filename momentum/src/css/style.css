@@ -126,6 +126,7 @@ body {
   min-height: 28px;
   font-size: 24px;
   margin-bottom: 20px;
+  text-transform: capitalize;
 }
 
 .greeting-container {

@@ -1,4 +1,5 @@
 import { showGreeting } from "./greeting";
+import { currentLang } from "./translation";
 
 const timePlace = document.querySelector(".time");
 const datePlace = document.querySelector(".date");
@@ -6,7 +7,12 @@ const datePlace = document.querySelector(".date");
 function showDate() {
   const date = new Date();
   const options = { weekday: "long", month: "long", day: "numeric" };
-  const currentDate = date.toLocaleDateString("en-US", options);
+  let currentDate;
+  if (currentLang === "EN") {
+    currentDate = date.toLocaleDateString("en-US", options);
+  } else if (currentLang === "RU") {
+    currentDate = date.toLocaleDateString("ru-RU", options);
+  }
   datePlace.textContent = currentDate;
 }
 
@@ -20,3 +26,5 @@ function showTime() {
 }
 
 showTime();
+
+export { showDate };
