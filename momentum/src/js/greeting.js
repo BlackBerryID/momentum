@@ -1,3 +1,5 @@
+import { currentLang } from "./translation";
+
 const greeting = document.querySelector(".greeting");
 const name = document.querySelector(".name");
 
@@ -12,7 +14,22 @@ function getTimeOfDay() {
 
 function showGreeting() {
   const timeOfDay = getTimeOfDay();
-  const greetingText = `Good ${timeOfDay}`;
+  let greetingText;
+  if (currentLang === "EN") {
+    greetingText = `Good ${timeOfDay}`;
+    name.placeholder = "[Enter name]";
+  } else if (currentLang === "RU") {
+    if (timeOfDay === "morning") {
+      greetingText = `Доброе утро`;
+    } else if (timeOfDay === "afternoon") {
+      greetingText = `Добрый день`;
+    } else if (timeOfDay === "evening") {
+      greetingText = `Добрый вечер`;
+    } else if (timeOfDay === "night") {
+      greetingText = `Доброй ночи`;
+    }
+    name.placeholder = "[Введите имя]";
+  }
   greeting.textContent = greetingText;
 }
 
