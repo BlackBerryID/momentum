@@ -1,6 +1,7 @@
 const body = document.querySelector("body");
 const slideNext = document.querySelector(".slide-next");
 const slidePrev = document.querySelector(".slide-prev");
+const imageSources = document.querySelectorAll(".source");
 let randomNum = getRandomNum();
 
 function getRandomNum() {
@@ -43,7 +44,27 @@ function getSlidePrev() {
   setBg();
 }
 
+function changeSource() {
+  if (!this.classList.contains("active")) {
+    // if (this.classList.contains('source-flickr')) {
+    //   imageSources.forEach(image => image.classList.remove('active'))
+    //   this.classList.add('active')
+    // } else if (this.classList.contains('source-unsplash')) {
+    //   imageSources.forEach(image => image.classList.remove('active'))
+    //   this.classList.add('active')
+    // } else if (this.classList.contains('source-github')) {
+    //   imageSources.forEach(image => image.classList.remove('active'))
+    //   this.classList.add('active')
+    // }
+    imageSources.forEach((image) => image.classList.remove("active"));
+    this.classList.add("active");
+  }
+}
+
 setBg();
 
 slideNext.addEventListener("click", getSlideNext);
 slidePrev.addEventListener("click", getSlidePrev);
+imageSources.forEach((item) => item.addEventListener("click", changeSource));
+
+export { getTimeOfDay, setBg };
