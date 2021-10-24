@@ -14,7 +14,7 @@ async function getLinkToImageUnsplash() {
 }
 
 function setImageFromLinkUnsplash() {
-  getLinkToImageUnsplash().then((data) => {
+  getLinkToImageUnsplash().then(() => {
     body.style.backgroundImage = newImageLinkUnsplash;
   });
 }
@@ -46,11 +46,13 @@ async function getArrayOfImagesFlickr() {
   arrayOfImagesFlickr = data.photos.photo;
 }
 
-function setImageFromArrayFlickr() {
+async function setImageFromArrayFlickr(isDifferentImage) {
   const timeOfday = getTimeOfDay();
-
+  if (isDifferentImage) randomNum = getRandomNum();
   if (arrayOfImagesFlickr && currentTimeOfDay === timeOfday) {
-    body.style.backgroundImage = `url(${arrayOfImagesFlickr[randomNum]["url_l"]}`;
+    let path = await arrayOfImagesFlickr[randomNum]["url_l"];
+    let url = `url(${path}`;
+    body.style.backgroundImage = url;
   } else {
     getArrayOfImagesFlickr().then(
       (data) =>

@@ -37,21 +37,35 @@ function setBg() {
 }
 
 function getSlideNext() {
-  if (randomNum + 1 > 20) {
-    randomNum = 1;
-  } else {
-    randomNum++;
+  let source = state.photoSource;
+  if (source === "github") {
+    if (randomNum + 1 > 20) {
+      randomNum = 1;
+    } else {
+      randomNum++;
+    }
+    setBg();
+  } else if (source === "unsplash") {
+    setImageFromLinkUnsplash();
+  } else if (source === "flickr") {
+    setImageFromArrayFlickr(true);
   }
-  setBg();
 }
 
 function getSlidePrev() {
-  if (randomNum - 1 < 1) {
-    randomNum = 20;
-  } else {
-    randomNum--;
+  let source = state.photoSource;
+  if (source === "github") {
+    if (randomNum - 1 < 1) {
+      randomNum = 20;
+    } else {
+      randomNum--;
+    }
+    setBg();
+  } else if (source === "unsplash") {
+    setImageFromLinkUnsplash();
+  } else if (source === "flickr") {
+    setImageFromArrayFlickr(true);
   }
-  setBg();
 }
 
 function changeSource() {
