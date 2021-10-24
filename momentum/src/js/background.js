@@ -3,6 +3,7 @@ import {
   setImageFromArrayFlickr,
   setImageFromLinkUnsplash,
   setTheSameImageFromLinkUnsplash,
+  getArrayOfImagesFlickr,
 } from "./backgroundAPI";
 
 const body = document.querySelector("body");
@@ -101,5 +102,30 @@ loadSource();
 slideNext.addEventListener("click", getSlideNext);
 slidePrev.addEventListener("click", getSlidePrev);
 imageSources.forEach((item) => item.addEventListener("click", changeSource));
+
+// image tag
+const tagInput = document.querySelector(".tag-input");
+if (state.imageTag) tagInput.value = state.imageTag;
+
+async function setTag() {
+  state.imageTag = tagInput.value;
+  localStorage.setItem("state", JSON.stringify(state));
+  let source = state.photoSource;
+  if (source === "flickr") {
+    await getArrayOfImagesFlickr();
+    setImageFromArrayFlickr(true);
+  } else if (source === "unsplash") {
+    setImageFromLinkUnsplash();
+  }
+}
+
+function checkKey(e) {
+  if (e.code === "Enter") {
+    tagInput.blur();
+  }
+}
+
+tagInput.addEventListener("change", setTag);
+tagInput.addEventListener("keypress", checkKey);
 
 export { getTimeOfDay };

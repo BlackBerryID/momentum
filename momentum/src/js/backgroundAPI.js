@@ -1,4 +1,5 @@
 import { getTimeOfDay } from "./background";
+import { state } from "./settings";
 
 const body = document.querySelector("body");
 
@@ -40,7 +41,10 @@ function getRandomNum() {
 async function getArrayOfImagesFlickr() {
   const timeOfday = getTimeOfDay();
   currentTimeOfDay = timeOfday;
-  const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=dd1acdb41d477138cf1a2d813c3a1357&tags=${timeOfday}&extras=url_l&format=json&nojsoncallback=1`;
+  let tag = timeOfday;
+  let localState = JSON.parse(localStorage.getItem("state"));
+  if (localState.imageTag) tag = localState.imageTag;
+  const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=dd1acdb41d477138cf1a2d813c3a1357&tags=${tag}&extras=url_l&format=json&nojsoncallback=1`;
   const res = await fetch(url);
   const data = await res.json();
   arrayOfImagesFlickr = data.photos.photo;
@@ -65,4 +69,5 @@ export {
   setImageFromLinkUnsplash,
   setImageFromArrayFlickr,
   setTheSameImageFromLinkUnsplash,
+  getArrayOfImagesFlickr,
 };
