@@ -1,7 +1,17 @@
+import { state } from "./settings";
+import {
+  setImageFromArrayFlickr,
+  setImageFromLinkUnsplash,
+  setTheSameImageFromLinkUnsplash,
+} from "./backgroundAPI";
+
 const body = document.querySelector("body");
 const slideNext = document.querySelector(".slide-next");
 const slidePrev = document.querySelector(".slide-prev");
 const imageSources = document.querySelectorAll(".source");
+const imageSourceFlickr = document.querySelector(".source-flickr");
+const imageSourceUnsplash = document.querySelector(".source-unsplash");
+const imageSourceGithub = document.querySelector(".source-github");
 let randomNum = getRandomNum();
 
 function getRandomNum() {
@@ -46,25 +56,36 @@ function getSlidePrev() {
 
 function changeSource() {
   if (!this.classList.contains("active")) {
-    // if (this.classList.contains('source-flickr')) {
-    //   imageSources.forEach(image => image.classList.remove('active'))
-    //   this.classList.add('active')
-    // } else if (this.classList.contains('source-unsplash')) {
-    //   imageSources.forEach(image => image.classList.remove('active'))
-    //   this.classList.add('active')
-    // } else if (this.classList.contains('source-github')) {
-    //   imageSources.forEach(image => image.classList.remove('active'))
-    //   this.classList.add('active')
-    // }
+    if (this.classList.contains("source-flickr")) {
+      state.photoSource = "flickr";
+      setImageFromArrayFlickr();
+    } else if (this.classList.contains("source-unsplash")) {
+      state.photoSource = "unsplash";
+      setTheSameImageFromLinkUnsplash();
+    } else if (this.classList.contains("source-github")) {
+      state.photoSource = "github";
+      setBg();
+    }
     imageSources.forEach((image) => image.classList.remove("active"));
     this.classList.add("active");
   }
 }
 
-setBg();
+function loadSource() {
+  let source = state.photoSource;
+  if (source === "github") {
+    changeSource.apply(imageSourceGithub);
+  } else if (source === "flickr") {
+    changeSource.apply(imageSourceFlickr);
+  } else if (source === "unsplash") {
+    changeSource.apply(imageSourceUnsplash);
+  }
+}
+
+loadSource();
 
 slideNext.addEventListener("click", getSlideNext);
 slidePrev.addEventListener("click", getSlidePrev);
 imageSources.forEach((item) => item.addEventListener("click", changeSource));
 
-export { getTimeOfDay, setBg };
+export { getTimeOfDay };

@@ -19,7 +19,13 @@ function setImageFromLinkUnsplash() {
   });
 }
 
-// setImageFromLinkUnsplash();
+function setTheSameImageFromLinkUnsplash() {
+  if (newImageLinkUnsplash) {
+    body.style.backgroundImage = newImageLinkUnsplash;
+  } else if (!newImageLinkUnsplash) {
+    setImageFromLinkUnsplash();
+  }
+}
 
 // Flickr API
 
@@ -53,4 +59,8 @@ function setImageFromArrayFlickr() {
   }
 }
 
-export { setImageFromLinkUnsplash, setImageFromArrayFlickr };
+export {
+  setImageFromLinkUnsplash,
+  setImageFromArrayFlickr,
+  setTheSameImageFromLinkUnsplash,
+};
