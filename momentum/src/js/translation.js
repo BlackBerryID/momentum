@@ -20,6 +20,8 @@ const settingsTitleLanguage = document.querySelector(".title-language");
 const settingsTitleSource = document.querySelector(".title-source");
 const settingsTitleTag = document.querySelector(".title-tag");
 const settingsTitleInput = document.querySelector(".tag-input");
+const todoInput = document.querySelector(".todo-input");
+const todoTip = document.querySelector(".todo-tip");
 
 let langFromLocalStorage = JSON.parse(localStorage.getItem("state")).language;
 let currentLang = langFromLocalStorage;
@@ -41,6 +43,9 @@ let settingsObj = {
     source: "Image source",
     tag: "Image tag",
     input: "Enter tag",
+    todoInput: "New todo",
+    todoTip:
+      "Left click to toggle complete. <br> Right click to delete the todo.",
   },
   RU: {
     settings: "Настройки",
@@ -58,10 +63,11 @@ let settingsObj = {
     source: "Источник картинок",
     tag: "Тег картинок",
     input: "Введите тег",
+    todoInput: "Новая задача",
+    todoTip:
+      "Левый клик переключить состояние задачи. <br> Правый клик удалить задачу.",
   },
 };
-
-settingsTitleInput.placeholder = settingsObj[currentLang].input;
 
 function changeLangAfterReload() {
   if (currentLang === "RU") {
@@ -103,6 +109,8 @@ function translateSettings() {
   settingsTitleSource.textContent = settingsObj[currentLang].source;
   settingsTitleTag.textContent = settingsObj[currentLang].tag;
   settingsTitleInput.placeholder = settingsObj[currentLang].input;
+  todoInput.placeholder = settingsObj[currentLang].todoInput;
+  todoTip.innerHTML = settingsObj[currentLang].todoTip;
 }
 
 langButtons.forEach((item) => {

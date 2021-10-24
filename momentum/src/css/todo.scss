@@ -16,12 +16,33 @@
   }
 
   &-title {
+    display: inline-block;
+    position: relative;
+    right: -50%;
+    transform: translateX(-50%);
     font-size: 20px;
     text-align: right;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.9;
+    transition: 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   &-form {
     width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0%);
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-10%);
+    }
   }
 
   &-input {

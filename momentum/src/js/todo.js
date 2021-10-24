@@ -1,6 +1,7 @@
 const form = document.querySelector(".todo-form");
 const input = document.querySelector(".todo-input");
 const todoList = document.querySelector(".todo-list");
+const todoButton = document.querySelector(".todo-title");
 
 const todos = JSON.parse(localStorage.getItem("todos"));
 
@@ -8,6 +9,10 @@ if (todos) {
   todos.forEach((todo) => {
     addTodo(todo);
   });
+}
+
+if (localStorage.getItem("todoIsActive")) {
+  form.classList.add("active");
 }
 
 form.addEventListener("submit", (e) => {
@@ -59,3 +64,18 @@ function updateLS() {
 
   localStorage.setItem("todos", JSON.stringify(todos));
 }
+
+function toggleTodoList() {
+  if (form.classList.contains("active")) {
+    form.classList.remove("active");
+    localStorage.setItem("todoIsActive", "");
+  } else {
+    form.classList.add("active");
+    localStorage.setItem("todoIsActive", "true");
+  }
+}
+
+todoButton.addEventListener("click", toggleTodoList);
+window.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => (form.style.transition = "all 0.3s"), 100);
+});
