@@ -13,6 +13,9 @@ const imageSources = document.querySelectorAll(".source");
 const imageSourceFlickr = document.querySelector(".source-flickr");
 const imageSourceUnsplash = document.querySelector(".source-unsplash");
 const imageSourceGithub = document.querySelector(".source-github");
+const tagInput = document.querySelector(".tag-input");
+let unsplashTag = JSON.parse(localStorage.getItem("state")).imageTag;
+let flickrTag = JSON.parse(localStorage.getItem("state")).imageTag;
 let randomNum = getRandomNum();
 
 function getRandomNum() {
@@ -69,17 +72,34 @@ function getSlidePrev() {
   }
 }
 
-function changeSource() {
+async function changeSource() {
   if (!this.classList.contains("active")) {
     if (this.classList.contains("source-flickr")) {
       state.photoSource = "flickr";
-      setImageFromArrayFlickr();
+      if (flickrTag == tagInput.value) {
+        setImageFromArrayFlickr();
+      } else {
+        flickrTag = tagInput.value;
+        await getArrayOfImagesFlickr();
+        setImageFromArrayFlickr();
+      }
+      tagInput.removeAttribute("disabled");
+      tagInput.classList.remove("disabled");
     } else if (this.classList.contains("source-unsplash")) {
       state.photoSource = "unsplash";
-      setTheSameImageFromLinkUnsplash();
+      if (unsplashTag == tagInput.value) {
+        setTheSameImageFromLinkUnsplash();
+      } else {
+        unsplashTag = tagInput.value;
+        setImageFromLinkUnsplash();
+      }
+      tagInput.removeAttribute("disabled");
+      tagInput.classList.remove("disabled");
     } else if (this.classList.contains("source-github")) {
       state.photoSource = "github";
       setBg();
+      tagInput.setAttribute("disabled", "true");
+      tagInput.classList.add("disabled");
     }
     imageSources.forEach((image) => image.classList.remove("active"));
     this.classList.add("active");
@@ -104,7 +124,7 @@ slidePrev.addEventListener("click", getSlidePrev);
 imageSources.forEach((item) => item.addEventListener("click", changeSource));
 
 // image tag
-const tagInput = document.querySelector(".tag-input");
+
 if (state.imageTag) tagInput.value = state.imageTag;
 
 async function setTag() {
@@ -112,9 +132,11 @@ async function setTag() {
   localStorage.setItem("state", JSON.stringify(state));
   let source = state.photoSource;
   if (source === "flickr") {
+    flickrTag = tagInput.value;
     await getArrayOfImagesFlickr();
     setImageFromArrayFlickr(true);
   } else if (source === "unsplash") {
+    unsplashTag = tagInput.value;
     setImageFromLinkUnsplash();
   }
 }

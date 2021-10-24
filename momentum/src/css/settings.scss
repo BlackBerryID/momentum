@@ -216,6 +216,14 @@ input:checked + .slider:before {
   font-size: 16px;
 }
 
+.tag-input:focus {
+  border-color: #d4af37;
+}
+
+.tag-input.disabled {
+  opacity: 0.3;
+}
+
 .tag-input::placeholder {
   font-size: 16px;
   color: #ccc;
