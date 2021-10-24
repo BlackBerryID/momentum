@@ -5,6 +5,7 @@ const sections = document.querySelectorAll("[data-section]");
 let state = {
   language: "EN",
   photoSource: "github",
+  imageTag: "",
   blocks: ["time", "date", "greeting", "quote", "weather", "audio", "todolist"],
 };
 

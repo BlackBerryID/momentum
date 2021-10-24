@@ -7,7 +7,7 @@
   color: #333;
 
   &-container {
-    visibility: hidden;
+    // visibility: hidden;
     position: relative;
     top: -1080%;
     right: -40%;
@@ -153,7 +153,8 @@ input:checked + .slider:before {
 // languages, image source
 
 .languages-wrapper,
-.source-wrapper {
+.source-wrapper,
+.tag-wrapper {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
@@ -165,7 +166,8 @@ input:checked + .slider:before {
 }
 
 .title-language,
-.title-source {
+.title-source,
+.title-tag {
   position: relative;
 }
 
@@ -200,4 +202,21 @@ input:checked + .slider:before {
 .lang.active,
 .source.active {
   color: #333;
+}
+
+.tag-input {
+  outline: none;
+  background: inherit;
+  border: 1px solid #333;
+  border-radius: 5px;
+  height: 22px;
+  width: 240px;
+  align-self: center;
+  padding: 0 10px;
+  font-size: 16px;
+}
+
+.tag-input::placeholder {
+  font-size: 16px;
+  color: #ccc;
 }
