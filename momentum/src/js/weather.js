@@ -32,9 +32,11 @@ async function getWeather(cityName) {
   if (currentLang === "RU") {
     wind.textContent = `Скорость ветра: ${data.wind.speed.toFixed(0)} м/с`;
     humidity.textContent = `Влажность: ${data.main.humidity}%`;
+    if (city.value.toLowerCase() == "minsk") city.value = "Минск";
   } else if (currentLang === "EN") {
     wind.textContent = `Wind speed: ${data.wind.speed.toFixed(0)} m/s`;
     humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    if (city.value.toLowerCase() == "минск") city.value = "Minsk";
   }
 }
 
