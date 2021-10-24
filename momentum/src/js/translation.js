@@ -1,5 +1,6 @@
 import { data, randomNum, showQuote } from "./quotation";
 import { state } from "./settings";
+import { getWeather, city } from "./weather";
 
 const langRuButton = document.querySelector(".lang-ru");
 const langEnButton = document.querySelector(".lang-en");
@@ -92,6 +93,7 @@ langButtons.forEach((item) => {
   item.addEventListener("click", () => {
     changeLang.apply(item);
     showQuote(data, randomNum, currentLang);
+    getWeather(city.value);
   });
 });
 
