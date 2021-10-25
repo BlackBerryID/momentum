@@ -2,6 +2,7 @@ const settings = document.querySelector(".settings");
 const openSettingsButton = document.querySelector(".open-settings");
 const settingCheckboxes = document.querySelectorAll(".checkbox");
 const sections = document.querySelectorAll("[data-section]");
+const settingsContainer = document.querySelector(".settings-container");
 let state = {
   language: "EN",
   photoSource: "github",
@@ -61,6 +62,11 @@ function changeBlocksState() {
   showHide();
 }
 
+window.addEventListener("click", (e) => {
+  if (e.target.classList.contains("open-settings")) return;
+  if (e.path.findIndex((item) => item.className == "settings-container") < 0)
+    settings.classList.remove("active");
+});
 window.addEventListener("beforeunload", setLocalStorage);
 openSettingsButton.addEventListener("click", toggleSettings);
 settingCheckboxes.forEach((item) =>
