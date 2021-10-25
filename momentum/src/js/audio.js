@@ -6,6 +6,8 @@ const playPrevBtn = document.querySelector(".play-prev");
 const playListContainer = document.querySelector(".play-list");
 let isPlay = false;
 let playNum = 0;
+let audioCurrentTime;
+let currentSongTitle;
 
 playList.forEach((item) => {
   const li = document.createElement("li");
@@ -18,14 +20,19 @@ const playItems = document.querySelectorAll(".play-item");
 
 function playAudio() {
   if (isPlay) {
+    audioCurrentTime = audio.currentTime;
     audio.pause();
     isPlay = false;
     changeButtonIcon();
     highlightSong();
   } else {
-    audio.src = playList[playNum].src;
-    songTitle.textContent = playList[playNum].title;
-    audio.currentTime = 0;
+    if (currentSongTitle !== playList[playNum].title) {
+      audio.src = playList[playNum].src;
+      songTitle.textContent = playList[playNum].title;
+    } else {
+      audio.currentTime = audioCurrentTime;
+    }
+    currentSongTitle = playList[playNum].title;
     audio.play();
     isPlay = true;
     changeButtonIcon();
@@ -49,6 +56,7 @@ function playNext() {
   }
   audio.src = playList[playNum].src;
   songTitle.textContent = playList[playNum].title;
+  currentSongTitle = playList[playNum].title;
   audio.currentTime = 0;
   isPlay = true;
   changeButtonIcon();
@@ -65,6 +73,7 @@ function playPrev() {
   }
   audio.src = playList[playNum].src;
   songTitle.textContent = playList[playNum].title;
+  currentSongTitle = playList[playNum].title;
   audio.currentTime = 0;
   isPlay = true;
   changeButtonIcon();
@@ -128,7 +137,6 @@ function changeVolume(e) {
     changeValue * 100
   }%, #e8e8ea ${changeValue * 100}%, white 100%)`;
   volumeBar.value = volumeBarValue = changeValue;
-  console.log(volumeBarValue);
   if (audio.volume === 0) {
     volumeBtn.style.backgroundImage = `url(./assets/svg/volume-muted.svg)`;
     volumeBtn.style.top = `52px`;

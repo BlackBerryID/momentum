@@ -18,16 +18,16 @@
   list-style: none;
   cursor: pointer;
   transition: 0.3s;
-  color: #e8e8ea;
+  color: #fff;
+  opacity: 0.9;
 }
 
-// .play-item:hover {
-//   opacity: 1;
-// }
+.play-item:hover {
+  opacity: 1;
+}
 
 .play-item::before {
   content: "";
-  /* content: "\2713"; */
   position: absolute;
   left: 0;
   top: 2px;
