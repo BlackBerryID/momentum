@@ -10,3 +10,4 @@ import "./js/backgroundAPI";
 import "./js/settings";
 import "./js/translation";
 import "./js/todo";
+import "./js/console";

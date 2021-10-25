@@ -66,7 +66,6 @@ window.addEventListener("beforeunload", setLocalStorage);
 window.addEventListener("DOMContentLoaded", () => {
   getLocalStorage();
   getWeather(city.value);
-  console.log(city.value);
 });
 
 city.addEventListener("change", setCity);
